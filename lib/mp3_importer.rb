@@ -4,18 +4,18 @@ class MP3Importer
     @@files=[]
 def initialize(path)
 @path=path
-@directory=Dir.entries(path)
-    @directory.each do |f| 
-    @@files << f if f.include?("mp3") && !files.include?(f)
-    end
 end 
 def files
- return @@files
+    @directory=Dir.entries(path)
+    @directory.each do |f| 
+    @@files << f if f.include?("mp3")
+end 
+@@files
 end 
 
 def import
-files.each do |song|
-    Song.new_by_file_name(song)
+files.map do |song|
+    Song.new_by_filename(song)
 end 
 end 
 end 
